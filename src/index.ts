@@ -1,7 +1,9 @@
 import chalk from "chalk";
 import clear from "clear";
 import figlet from "figlet";
-import { App } from './app';
+import App from './app';
+import print from "./util/print";
+import questions from "./cli/questions";
 
 clear();
 
@@ -13,7 +15,18 @@ console.log(
 
 const run = async () => {
     const app = new App();
-    app.run();
+    await app.init();
+    
+    let chains = app.getChains();
+    if (chains.length === 0) {
+        print(chalk.red('No chains found'));
+        return;
+    }
+    const chain = await questions.askWhatChainToUse(chains);
+    
+
+
+
 }
 
 run();

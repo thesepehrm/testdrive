@@ -1,6 +1,6 @@
-import { Decimal } from 'decimal.js'
+import ChainState from './chainstate';
 export default interface Algorithm {
     name: string;
     description: string;
-    run: (totalSupply: number, transactions: number,  ) => boolean;
+    calculate (chainState: ChainState): void;
 }

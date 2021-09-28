@@ -1,5 +1,6 @@
-interface Algorithm {
+import { Decimal } from 'decimal.js'
+export default interface Algorithm {
     name: string;
     description: string;
-    run: (input: string) => boolean;
+    run: (totalSupply: number, transactions: number,  ) => boolean;
 }

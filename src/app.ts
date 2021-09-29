@@ -25,9 +25,21 @@ export default class App {
 
     }
 
-    run() {
-       
-        
+    run(chainName: string, algorithmName: string) {
+        if (!this.chains[chainName]) {
+            print(chalk.red(`Chain ${chainName} not found`))
+            return
+        }
+
+        if (!this.algorithms[algorithmName]) {
+            print(chalk.red(`Algorithm ${algorithmName} not found`))
+            return
+        }
+
+        let chain = this.chains[chainName]
+        let algorithm = this.algorithms[algorithmName]
+
+        // TODO: run
     }
 
 
@@ -65,6 +77,10 @@ export default class App {
 
     getChains(): string[] {
         return Object.keys(this.chains)
+    }
+
+    getAlgorithms(): string[] {
+        return Object.keys(this.algorithms)
     }
 
 }

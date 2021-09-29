@@ -16,16 +16,22 @@ console.log(
 const run = async () => {
     const app = new App();
     await app.init();
-    
+
     let chains = app.getChains();
+    let algorithms = app.getAlgorithms();
     if (chains.length === 0) {
         print(chalk.red('No chains found'));
         return;
     }
-    const chain = await questions.askWhatChainToUse(chains);
-    
+    if (algorithms.length === 0) {
+        print(chalk.red('No algorithms found'));
+        return;
+    }
 
+    const { chain } = await questions.askWhatChainToUse(chains);
+    const { algorithm } = await questions.askWhatAlgorithmToUse(algorithms);
 
+    app.run(chain, algorithm);
 
 }
 
